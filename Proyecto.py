@@ -1,3 +1,5 @@
+import os
+
 def contrasena ():
     Dic1 = {
     "Usuario":"admin",
@@ -11,7 +13,7 @@ def contrasena ():
 
     while usuario != Dic1["Usuario"] or contrasena != Dic1["Contraseña"]:
         if contador <= 2:
-            import os 
+             
             os.system("cls")
             print ("Usuario o contraseña incorrectos.")
             imp_usuario = input("ingrese su usuario: ")
@@ -19,17 +21,17 @@ def contrasena ():
             contrasena = input("ingrese la contraseña nuevamente: ")
             contador = contador + 1
         else:
-            import os 
+            
             os.system("cls")
             print("Ha excedido la cantidad maxima de intentos (3). Su cuenta ha sido bloqueada temporalmente")
             exit()
     else:
-        import os 
         os.system("cls")
 
 #contrasena()
 
 def Menu ():
+        os.system("cls")
         print("   .:MENU PRINCIPAL:.   ")
         print ("1. Ingresar producto")
         print ("2. Consulta producto")
@@ -51,7 +53,6 @@ def Menu ():
         else:
             print("opcion invalida")
             Menu ()
-
 
 
 def ingreso_Producto():
@@ -79,21 +80,22 @@ def ingreso_Producto():
         condicion = input(print ("Desea agregar un producto? Si/No"))
     else:
         Menu ()
-    with open ("registroprueba.txt","a") as output:
-        output.write(str(Inventario))
+    with open ("registroprueba.txt","a") as archivo:
+        archivo.write(str(Inventario))
 
 
 
 def consultar_inventario (): 
     abrir = open("registroprueba.txt","r")
     consulta = abrir.read()
+   # for I in consulta:
+    #    print (I)
     print (consulta)
     abrir.close()
     
     
     #for I in lista_Nombre_Producto:
      #   print (I)
-
 
 
 
