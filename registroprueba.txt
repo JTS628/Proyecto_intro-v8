@@ -1,1 +1,4 @@
-['carro', '1', '1', '1']['camion', '1', '1', '1', 'moto', '2', '2', '', 'celular', '3', '3', '3']['fresa', '5', '5', '5']['camisa', '1', '2', '']
+carro, 1, 1, 1
+carro, 1, 1, 1
+motocicleta,22,22,22
+camion, 3, 3, 3
