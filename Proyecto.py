@@ -1,4 +1,5 @@
 import os
+os.system("cls")
 
 def contrasena ():
     Dic1 = {
@@ -46,9 +47,8 @@ def Menu ():
             consultar_inventario()
         elif seleccion_Opciones == 3:
             Elimiar_producto()
-
         elif seleccion_Opciones == 4:
-            Modificar_inventario ()
+            Modificar_inventario()
 
         elif seleccion_Opciones == 5:
             print ("Salir")
@@ -119,7 +119,33 @@ def consultar_inventario ():
 
 
 def Elimiar_producto ():
-    print ("Mae meta su codigo aqui")
+   read=open("registroprueba.txt","r")
+   eliminar=open("temporal","w")
+   buscar= input("que articulo desea modificar: ")
+   a = " "
+
+   while (a):
+        s=read.readline()
+        L=a.split(",")
+        
+        if len (a) > 0:
+            if L [0] == buscar:
+                nombre = input ("ingrese el nombre ")
+                codigo = input ("ingrese el codigo ")
+                cantidad = input ("ingrese la cantidad ")
+                precio = input ("ingrese la cantidad ")
+                eliminar.write(nombre +","+codigo+","+cantidad+","+precio+"\n")
+            else:
+                eliminar.write(a)
+   read.close()
+   eliminar.close()
+   os.remove("registroprueba.txt")
+   os.remove("temporal","registroprueba.txt")
+
+
+        
+            
+ 
 
 
 def Modificar_inventario ():
