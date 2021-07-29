@@ -1,5 +1,6 @@
 from tkinter import *
 #from PIL import Image, ImageTk
+from tkinter import messagebox
 
 
 root = Tk ()
@@ -150,6 +151,10 @@ boton_check.pack(side=BOTTOM)
 
 texto = Text (ventana2,width=60,height=40)
 texto.pack(side=LEFT)
+
+
+#error = messagebox()
+
 
 
 root.mainloop()

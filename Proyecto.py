@@ -148,7 +148,8 @@ def Modificar_inventario ():
     os.remove("registroprueba.txt")
     os.rename("temporal","registroprueba.txt")
 
-
-#consultar_inventario ()
+Menu ()
+ingreso_Producto()
+consultar_inventario ()
 Modificar_inventario ()
-#Menu ()
+

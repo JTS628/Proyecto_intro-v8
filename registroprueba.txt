@@ -2,3 +2,6 @@ carro, 1, 1, 1
 carro, 1, 1, 1
 motocicleta,22,22,22
 camion, 3, 3, 3
+['carro', '1', '1', '1']
+['cuchilla', '7', '7', '7']
+['cuchilla', '7', '7', '7', 'cuchilla', '8', '8', '8']
