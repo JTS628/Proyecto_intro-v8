@@ -22,25 +22,17 @@ def cancelar_login():
     root.destroy()
     sys.exit()    
     
-def regreso():
-    root.deiconify()
-    ventana_ing.destroy()
 
 
-
-ventana_ing =""
 def ventana_ingreso():
-    global ventana_ing
     ventana_ing = Toplevel(root)
-    root.withdraw()
     ventana_ing.geometry("300x250")
     ventana_ing.title("Pantalla de ingrego")
     ventana_ing.config(background="purple")
     #lbl_ventana_ingreso = Label(ventana_ing,text="prueba ventana ingreso")
     #lbl_ventana_ingreso.pack()
-    bt_cerrar_ingreso=Button(ventana_ing,text="Regresar",command=regreso)
+    bt_cerrar_ingreso=Button(ventana_ing,text="Regresar",command=ventana_ing.destroy)
     bt_cerrar_ingreso.pack()
-    #bt_cerrar_ingreso.bind("",regreso)
 
 
 def ventana_consulta():
