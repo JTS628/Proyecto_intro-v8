@@ -1,159 +1,155 @@
-from tkinter import *
-#from PIL import Image, ImageTk
-from tkinter import messagebox
+import os
+import sys
+from tkinter import * 
+from PIL import Image
+
+root = Tk()
+root.title("ventana Principal")
+root.geometry("800x600")
+root.config(background="grey")
+root.withdraw()
 
 
-root = Tk ()
-root.title ("Inventario")
-root.geometry("1500x1000")
-root.config(bg="#006666")
 
-#imagen_root = PhotoImage (file = "cs.png")
-#label = Label(image=imagen_root)
-#label.pack()
 
-ventana1 = Frame(root,width=500,height=500,bg="yellow",relief=RAISED,padx=10,pady=10)
-ventana1.pack(padx=10,pady=10,side=RIGHT)
+def command1(event):
+    if ent_usu.get() == "admin" and ent_pass.get() == "admin":
+        root.deiconify()      
+        contra.destroy()
 
-ventana2=Frame(root,width=500,height=500,bg="green",relief=RAISED,padx=10,pady=10)
-ventana2.pack(padx=10,pady=10,side=RIGHT)
-
-ventana3=Frame(root,width=300,height=300,bg="green",relief=RAISED,padx=10,pady=10)
-ventana3.pack(padx=10,pady=10,side=LEFT)
-
-ventana4=Frame(root,width=300,height=300,bg="red",relief=RAISED,padx=10,pady=10)
-#ventana4.pack(padx=10,pady=10)
-ventana4.place(x=0,y=0)
-
-#b = Button(principal,text ="boton en ventana1")
-#b.pack()
-
-icono =  PhotoImage (file = "2.png")
-root.iconphoto(True,icono)
-
-etiqueta = Label(ventana1,
-                text="Systema de Inventario", 
-                font =("Arial",20,"bold"),
-                fg="#E0E0E0", #color letra
-                bg="#808080", #color letra
-                relief=RAISED, #borde
-                bd=10, #anchode borde
-                padx=20, #distancia letra-orilla
-                pady=20,
-                #image=icono,
-                #compound="bottom" # colocacion de la imagen
-                                )
-
-#etiqueta.pack()
-etiqueta.place(x=0,y=0) # para agregarla en un lugar especifico, se usa en vez de .pack
-#-------------------------------------------------------------------------------------------------
-boton = Button (ventana1,
-               text="Prueba de boton",
-               #command=click,
-               font=("Comic Sans",30),
-               fg="#E0E0E0",
-               bg="#808080",
-               activeforeground="blue",
-               activebackground="red",
-               #state=DISABLED,
-               #image=""
-               #command='top' #hubicacion de la imagen en el boton
-           
-               )
-
-#boton.pack()
-boton.place(x=000,y=150)
-#----------------------------------------------------------------------------------------------------
-
-def submit():
-    Usuario = barraingreso.get()
-    print ("El productio ingresado es: ", Usuario)
-    barraingreso.config(state=DISABLED)
+def cancelar_login():
+    contra.destroy()
+    root.destroy()
+    sys.exit()    
     
-def borrar():
-    barraingreso.delete(0,END)
-
-def back_space():
-    barraingreso.delete(len(barraingreso.get())-1,END)
-
-
-barraingreso = Entry (ventana3,
-                font=("Arial",20),
-                fg="#E0E0E0",
-                bg ="#808080",
-                width=15,
-                              
-                #show="*" # para mostrar signos envez de las letras - como para passwords
-                )
-
-barraingreso.insert(0,"Ingrese producto:")
-barraingreso.place (x=0,y=250)
-barraingreso.pack(side=LEFT)
-
-botonsubmit = Button(ventana3,
-                    text="submit",
-                    command=submit,
-                    height=5,
-                    width=5
-                    )
-                                        
-                            
-botonsubmit.pack(side=RIGHT)
-
-botonborrar = Button(ventana3,
-                    text="borrar",
-                    command=borrar
-                    )
-
-botonborrar.pack(side=RIGHT)
+def regreso():
+    root.deiconify()
+    ventana_ing.destroy()
+    ventana_cons.destroy()
+    ventana_elim.destroy()
+    ventana_mod.destroy()
 
 
-botonbackspace = Button(ventana3,
-                    text="backspace",
-                    command=back_space
-                    )
+ventana_ing =""
+def ventana_ingreso():
+    global ventana_ing
+    ventana_ing = Toplevel(root)
+    root.withdraw()
+    ventana_ing.geometry("300x250")
+    ventana_ing.title("Pantalla de ingrego")
+    ventana_ing.config(background="purple")
+    #lbl_ventana_ingreso = Label(ventana_ing,text="prueba ventana ingreso")
+    #lbl_ventana_ingreso.pack()
+    bt_cerrar_ingreso=Button(ventana_ing,text="Regresar",command=regreso)
+    bt_cerrar_ingreso.pack()
+    #bt_cerrar_ingreso.bind("",regreso)
 
-botonbackspace.pack(side=RIGHT)
+ventana_cons =""
+def ventana_consulta():
+    global ventana_cons
+    ventana_cons = Toplevel(root)
+    root.withdraw()
+    ventana_cons.geometry("300x250")
+    ventana_cons.title("Consulta de productos")
+    ventana_cons.config(background="lightgreen")
+    #lbl_ventana_consulta = Label(ventana_cons,text="prueba ventana ingreso")
+    #lbl_ventana_consulta.pack()
+    bt_cerrar_ingreso=Button(ventana_cons,text="Regresar",command=regreso)
+    bt_cerrar_ingreso.pack()
+
+  
+ventana_elim = ""
+def ventana_eliminar():
+    global ventana_elim
+    ventana_elim = Toplevel(root)
+    root.withdraw()
+    ventana_elim.geometry("300x250")
+    ventana_elim.title("Eliminacion de Productos")
+    ventana_elim.config(background="red")
+    #lbl_ventana_eliminar = Label(ventana_elim,text="prueba ventana ingreso")
+    #lbl_ventana_eliminar.pack()
+    bt_cerrar_ingreso=Button(ventana_elim,text="Regresar",command=regreso)
+    bt_cerrar_ingreso.pack()
+
+ventana_mod = ""
+def ventana_modificar():
+    global ventana_mod
+    ventana_mod = Toplevel(root)
+    root.withdraw()
+    ventana_mod.geometry("300x250")
+    ventana_mod.title("Modificacion de productos")
+    ventana_mod.config(background="lightblue") 
+    #lbl_ventana_modificar = Label(ventana_mod,text="prueba ventana ingreso")
+    #lbl_ventana_modificar.pack()  
+    bt_cerrar_ingreso=Button(ventana_mod,text="Regresar",command=regreso)
+    bt_cerrar_ingreso.pack()
 
 
 
-#-----------------------------------------------------------------------------------
-
-x = IntVar()
-
-def display():
-    if (x.get () ==1):
-        print("positivo")
-    else:
-        print( "valor negativo")
+#Menu ------------------------------------------------------------------------------------------
 
 
-boton_check =  Checkbutton(ventana4,
-                            text="texto check button prueba",
-                            variable=x,
-                            onvalue=1, # the databa type for the checkbox puede ser boolean, string - va ligado a VAR, hay IntVar,BooleanVar, StrVar. 
-                            offvalue=0,
-                            command=display,
-                            font=("Arial",18),
-                            fg="#E0E0E0",
-                            bg="#808080",
-                            activeforeground="#E0E0E0",
-                            activebackground="#808080",
-                            padx=10,
-                            pady=10,
-                            #image="",
-                            #compound="" #image location
+lbl_opciones=Label(root,text="Menu de opciones")
+lbl_ingreso=Label(root,text="")
+bt_ingreso=Button(root,text="Ingresar",command=ventana_ingreso)
+
+lbl_consulta=Label(text="")
+bt_consulta=Button(root,text="Consultar",command=ventana_consulta)
+
+lbl_eliminar=Label(text="")
+bt_eliminar=Button(root,text="Elimiar",command=ventana_eliminar)
+
+lbl_modificar=Label(text="")
+bt_modificar=Button(root,text="Modificar",command=ventana_modificar)
+
+lbl_opciones.pack()
+lbl_ingreso.pack()
+lbl_consulta.pack()
+lbl_eliminar.pack()
+lbl_modificar.pack()
+
+bt_ingreso.pack()
+bt_consulta.pack()
+bt_eliminar.pack()
+bt_modificar.pack()
 
 
-)
+# Ventana Contraseña ----------------------------------------------------------------
 
-boton_check.pack(side=BOTTOM)
+contra = Toplevel(root)
+bt_salir_root= Button(root,text="Salir",command=cancelar_login)
+bt_salir_root.pack()
 
-texto = Text (ventana2,width=60,height=40)
-texto.pack(side=LEFT)
+contra.geometry("300x250")
+contra.title("Pantalla de ingrego")
+contra.config(background="white")
+
+lbl_usu = Label(contra, text="Usuario", font= ("Arial",12))
+ent_usu = Entry(contra)
+
+lbl_pass = Label ( contra, text="Contraseña", font=("Arial",12))
+ent_pass = Entry (contra)
+
+boton_cancelar = Button(contra,text="Cancelar", command=lambda:cancelar_login())
+
+ent_pass.bind("<Return>",command1)
+
+#botoningresar = Button(contra,text="Ingresar")
+#botoningresar.bind("<Button-3>",command1)
+
+lbl1 = Label(contra, text="sistema de Inventario 2021. V9k ", font=("Arial",9))
+
+lbl_usu.pack()
+ent_usu.pack()
+lbl_pass.pack()
+ent_pass.pack()
+boton_cancelar.pack()
+lbl1.pack()
+#botoningresar.pack()
 
 
-#error = messagebox()
+
+
 
 
 

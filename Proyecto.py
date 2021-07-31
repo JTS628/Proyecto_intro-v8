@@ -68,13 +68,9 @@ def ingreso_Producto():
 
     while condicion == "si":
         nombre = input ("ingrese el nombre: ")
-        
         codigo = input ("ingrese el codigo: ")
-        
         cantidad = input ("ingrese la cantidad: ")
-      
         precio = input ("ingrese la cantidad: ")
-        
         Inventario.append(nombre)
         Inventario.append(codigo)
         Inventario.append(cantidad)
