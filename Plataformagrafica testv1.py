@@ -10,8 +10,6 @@ root.config(background="grey")
 root.withdraw()
 
 
-
-
 def command1(event):
     if ent_usu.get() == "admin" and ent_pass.get() == "admin":
         root.deiconify()      
@@ -30,25 +28,17 @@ def regreso():
     ventana_mod.destroy()
 
 
-def guardar(*list):
+def guardar():
     Inventario = []
-    nombre = ing_nombre.get()
-    codigo = ing_codigo.get()
-    cantidad = ing_cantidad.get()
-    precio = ing_precio.get()
-    Inventario.append(nombre)
-    Inventario.append(codigo)
-    Inventario.append(cantidad)
-    Inventario.append(precio)
+    Inventario.append(ent_nombre.get())
+    Inventario.append(ent_codigo.get())
+    Inventario.append(ent_cantidad.get())
+    Inventario.append(ent_precio.get())
 
     with open ("registroprueba.txt","a") as archivo:
         archivo.write(str(Inventario))
         archivo.write("\n")
-
-ing_nombre = ""
-ing_codigo = ""
-ing_cantidad = ""
-ing_precio = ""
+   
     
 ventana_ing =""
 def ventana_ingreso():
@@ -57,81 +47,41 @@ def ventana_ingreso():
     root.withdraw()
     ventana_ing.geometry("600x600")
     ventana_ing.title("Pantalla de ingrego")
-    ventana_ing.config(background="purple")
+    ventana_ing.config(background="#606060")
     bt_cerrar_ingreso=Button(ventana_ing,text="Regresar",command=regreso)
-    bt_cerrar_ingreso.pack(side=BOTTOM,padx=20,pady=20)
+    bt_cerrar_ingreso.pack(side=BOTTOM,padx="20",pady="20")
 
-    #lbl_ventana_ingreso = Label(ventana_ing,text="prueba ventana ingreso")
-    #lbl_ventana_ingreso.pack()
+ 
+    global ent_nombre
+    global ent_codigo 
+    global ent_cantidad 
+    global ent_precio
 
-    #bt_cerrar_ingreso.bind("",regreso)
+    lbl_ingreso = Label(ventana_ing,text="Formulario de ingreso de producto",background="#404040",font=("Arial","19"),foreground="White")
+    lbl_ingreso.pack(pady=50,side=TOP)
 
-    def ingreso_Producto():
-        condicion = "si"
-        
+    lbl_nombre = Label(ventana_ing,text="Ingrese el nombre: ",font=("Albertus Extra Bold","14"),width="17")
+    lbl_nombre.place(x=30, y=180)
+    ent_nombre = Entry(ventana_ing,font=("Albertus Extra Bold","14"),width="22")
+    ent_nombre.place(x=250,y=180)
 
-#while condicion == "si":
-    global ing_nombre 
-    global ing_codigo 
-    global ing_cantidad 
-    global ing_precio
-
-    ing_nombre = StringVar
-    ing_codigo = StringVar
-    ing_cantidad = StringVar
-    ing_precio = StringVar
+    lbl_codigo = Label (ventana_ing,text="Ingrese el codigo: ",font=("Boulder","14"),width="17")
+    lbl_codigo.place(x=30, y=240)
+    ent_codigo= Entry(ventana_ing,font=("Albertus Extra Bold","14"),width="22")
+    ent_codigo.place(x=250,y=240)
     
+    lbl_cantidad = Label (ventana_ing,text="Ingrese la cantidad: ",font=("Unicorn","14"),width="17")
+    lbl_cantidad.place(x=30, y=300)
+    ent_cantidad=Entry(ventana_ing,font=("Albertus Extra Bold","14"),width="22")
+    ent_cantidad.place(x=250,y=300)
     
+    lbl_precio = Label (ventana_ing, text="Ingrese el precio: ",font=("Serifa Th BT","14"),width="17")
+    lbl_precio.place(x=30, y=360)
+    ent_precio= Entry(ventana_ing,font=("Albertus Extra Bold","14"),width="22")
+    ent_precio.place(x=250,y=360)
 
-
-    lbl_nombre = Label(ventana_ing,text="ingrese el nombre: ")
-    lbl_nombre.pack()
-    ent_nombre = Entry(ventana_ing,textvariable=ing_nombre)
-    ent_nombre.pack()
-
-    lbl_codigo = Label (ventana_ing,text="ingrese el codigo: ")
-    lbl_codigo.pack()
-    ent_codigo= Entry(ventana_ing,textvariable=ing_codigo)
-    ent_codigo.pack()
-    
-    lbl_cantidad = Label (ventana_ing,text="ingrese la cantidad: ")
-    lbl_cantidad.pack()
-    ent_cantidad=Entry(ventana_ing,textvariable=ing_cantidad)
-    ent_cantidad.pack()
-    
-    lbl_precio = Label (ventana_ing, text="ingrese el precio: ")
-    lbl_precio.pack()
-    ent_precio= Entry(ventana_ing,textvariable=ing_precio)
-    ent_precio.pack()
-
-
-    bt_ingreso_registo = Button(ventana_ing,command=guardar)
-    bt_ingreso_registo.pack()
-
-    #Inventario.append(nombre)
-    #Inventario.append(codigo)
-    #Inventario.append(cantidad)
-    #Inventario.append(precio)
-   # lbl_nombre.pack()
-    #ent_nombre.pack()
-    #lbl_codigo.pack()
-    #ent_codigo.pack()
-    #lbl_cantidad.pack()
-    #ent_cantidad.pack()
-    #lbl_precio.pack()
-   # ent_precio.pack()
-    
-
-    
-    
-    
-
-    
-  
-
-
-  
-
+    bt_ingreso_registo = Button(ventana_ing,command=guardar,text="Guardar")
+    bt_ingreso_registo.pack(side=BOTTOM,pady="30")
 
 
 ventana_cons =""
@@ -146,6 +96,16 @@ def ventana_consulta():
     #lbl_ventana_consulta.pack()
     bt_cerrar_ingreso=Button(ventana_cons,text="Regresar",command=regreso)
     bt_cerrar_ingreso.pack()
+
+
+    abrir = open("registroprueba.txt","r")
+    consulta = abrir.read()
+    print (consulta)
+    
+    #for I in consulta.readlines():
+    #    print (I)
+        
+    abrir.close()
 
   
 ventana_elim = ""

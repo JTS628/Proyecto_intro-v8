@@ -22,49 +22,148 @@ def cancelar_login():
     root.destroy()
     sys.exit()    
     
+def regreso():
+    root.deiconify()
+    ventana_ing.destroy()
+    ventana_cons.destroy()
+    ventana_elim.destroy()
+    ventana_mod.destroy()
 
 
+def guardar():
+    Inventario = []
+    nombre = ing_nombre.get()
+    codigo = ing_codigo.get()
+    cantidad = ing_cantidad.get()
+    precio = ing_precio.get()
+    Inventario.append(nombre)
+    Inventario.append(codigo)
+    Inventario.append(cantidad)
+    Inventario.append(precio)
+
+    with open ("registroprueba.txt","a") as archivo:
+        archivo.write(str(Inventario))
+        archivo.write("\n")
+
+
+    
+ventana_ing =""
 def ventana_ingreso():
+    global ventana_ing
     ventana_ing = Toplevel(root)
-    ventana_ing.geometry("300x250")
+    root.withdraw()
+    ventana_ing.geometry("600x600")
     ventana_ing.title("Pantalla de ingrego")
     ventana_ing.config(background="purple")
-    #lbl_ventana_ingreso = Label(ventana_ing,text="prueba ventana ingreso")
-    #lbl_ventana_ingreso.pack()
-    bt_cerrar_ingreso=Button(ventana_ing,text="Regresar",command=ventana_ing.destroy)
-    bt_cerrar_ingreso.pack()
+    bt_cerrar_ingreso=Button(ventana_ing,text="Regresar",command=regreso)
+    bt_cerrar_ingreso.pack(side=BOTTOM,padx=20,pady=20)
+
+    
+
+    global ing_nombre
+    global ing_codigo 
+    global ing_cantidad 
+    global ing_precio
+
+    #ing_nombre = ""
+    #ing_codigo = ""
+    #ing_cantidad = ""
+    #ing_precio = ""
+
+    ing_nombre = StringVar
+    ing_codigo = IntVar
+    ing_cantidad = IntVar
+    ing_precio = IntVar
+    
+
+    lbl_nombre = Label(ventana_ing,text="ingrese el nombre: ")
+    lbl_nombre.pack()
+    ent_nombre = Entry(ventana_ing,textvariable=ing_nombre)
+    ent_nombre.pack()
+
+    lbl_codigo = Label (ventana_ing,text="ingrese el codigo: ")
+    lbl_codigo.pack()
+    ent_codigo= Entry(ventana_ing,textvariable=ing_codigo)
+    ent_codigo.pack()
+    
+    lbl_cantidad = Label (ventana_ing,text="ingrese la cantidad: ")
+    lbl_cantidad.pack()
+    ent_cantidad=Entry(ventana_ing,textvariable=ing_cantidad)
+    ent_cantidad.pack()
+    
+    lbl_precio = Label (ventana_ing, text="ingrese el precio: ")
+    lbl_precio.pack()
+    ent_precio= Entry(ventana_ing,textvariable=ing_precio)
+    ent_precio.pack()
 
 
+    bt_ingreso_registo = Button(ventana_ing,command=guardar,text="Guardar")
+    bt_ingreso_registo.pack()
+
+    #Inventario.append(nombre)
+    #Inventario.append(codigo)
+    #Inventario.append(cantidad)
+    #Inventario.append(precio)
+   # lbl_nombre.pack()
+    #ent_nombre.pack()
+    #lbl_codigo.pack()
+    #ent_codigo.pack()
+    #lbl_cantidad.pack()
+    #ent_cantidad.pack()
+    #lbl_precio.pack()
+   # ent_precio.pack()
+    
+
+    
+    
+    
+
+    
+  
+
+
+  
+
+
+
+ventana_cons =""
 def ventana_consulta():
+    global ventana_cons
     ventana_cons = Toplevel(root)
+    root.withdraw()
     ventana_cons.geometry("300x250")
     ventana_cons.title("Consulta de productos")
     ventana_cons.config(background="lightgreen")
     #lbl_ventana_consulta = Label(ventana_cons,text="prueba ventana ingreso")
     #lbl_ventana_consulta.pack()
-    bt_cerrar_ingreso=Button(ventana_cons,text="Regresar",command=ventana_cons.destroy)
+    bt_cerrar_ingreso=Button(ventana_cons,text="Regresar",command=regreso)
     bt_cerrar_ingreso.pack()
 
   
+ventana_elim = ""
 def ventana_eliminar():
+    global ventana_elim
     ventana_elim = Toplevel(root)
+    root.withdraw()
     ventana_elim.geometry("300x250")
     ventana_elim.title("Eliminacion de Productos")
     ventana_elim.config(background="red")
     #lbl_ventana_eliminar = Label(ventana_elim,text="prueba ventana ingreso")
     #lbl_ventana_eliminar.pack()
-    bt_cerrar_ingreso=Button(ventana_elim,text="Regresar",command=ventana_elim.destroy)
+    bt_cerrar_ingreso=Button(ventana_elim,text="Regresar",command=regreso)
     bt_cerrar_ingreso.pack()
 
-
+ventana_mod = ""
 def ventana_modificar():
+    global ventana_mod
     ventana_mod = Toplevel(root)
+    root.withdraw()
     ventana_mod.geometry("300x250")
     ventana_mod.title("Modificacion de productos")
     ventana_mod.config(background="lightblue") 
     #lbl_ventana_modificar = Label(ventana_mod,text="prueba ventana ingreso")
     #lbl_ventana_modificar.pack()  
-    bt_cerrar_ingreso=Button(ventana_mod,text="Regresar",command=ventana_mod.destroy)
+    bt_cerrar_ingreso=Button(ventana_mod,text="Regresar",command=regreso)
     bt_cerrar_ingreso.pack()
 
 
