@@ -1,5 +1,5 @@
 pcescritorio,1,1,1
 control,2,2,2
-teclado,3,3,3
+pianola,777,777,777
 camiseta,147,147,147,
 pijama,789,789,789,
