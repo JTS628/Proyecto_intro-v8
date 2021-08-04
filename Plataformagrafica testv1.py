@@ -3,7 +3,8 @@ import sys
 from tkinter import *
 from tkinter import font 
 from PIL import Image
-from tkinter.font import Font
+from tkinter import ttk 
+
 
 root = Tk()
 root.title("ventana Principal")
@@ -12,7 +13,6 @@ root.config(background="#202020")
 root.withdraw()
 
 #icono=PhotoImage(file="Imagenes/imagen.gif")
-
 
 
 def enter(event):
@@ -31,7 +31,7 @@ def cancelar_login():
     sys.exit()    
 
 # seccion DEF --------------------------------------------------------------
-#     
+     
 def regreso_ing():
     root.deiconify()
     ventana_ing.withdraw()
@@ -192,6 +192,18 @@ def ventana_eliminar():
     bt_cerrar_ingreso=Button(ventana_elim,text="Regresar",command=regreso_elim,font=("Arial","14"),foreground="#193300")
     bt_cerrar_ingreso.pack(side=BOTTOM,pady="20")
 
+def lista():
+    read = open("registroprueba.txt","r")
+
+    s = " "
+
+    while (s):
+        s=read.readline()
+        L=s.split(",")
+        print ("nombre ",L[0],"codigo ",L[1],"cantidad",L[2],"precio",L[3])
+        
+    read.close()
+            
 
 
 ventana_mod = ""
@@ -223,6 +235,12 @@ def ventana_modificar():
     lbl_modpre = Label(ventana_mod,text="Precio unitario? ",font=("Arial","14"),fg="#00c132",bg="#202020")
     ent_modpre = Entry(ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")
     btn_aceptar = Button(ventana_mod, command=modificar,text="Aceptar",font=("comic","12"),bg="#00c132")
+
+
+    ld_lista = ttk.Combobox(ventana_mod,values=lista)
+
+
+
     
     lbl_mod.pack(side=TOP,pady="20")
     lbl_modcual.place(x="30",y="150")

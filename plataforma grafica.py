@@ -14,7 +14,6 @@ root.withdraw()
 #icono=PhotoImage(file="Imagenes/imagen.gif")
 
 
-
 def enter(event):
     if ent_usu.get() == "admin" and ent_pass.get() == "admin":
         root.deiconify()      
@@ -31,7 +30,7 @@ def cancelar_login():
     sys.exit()    
 
 # seccion DEF --------------------------------------------------------------
-#     
+     
 def regreso_ing():
     root.deiconify()
     ventana_ing.withdraw()

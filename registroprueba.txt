@@ -1,5 +1,5 @@
-pcescritorio,1,1,1
-control,2,2,2
-pianola,777,777,777
-camiseta,147,147,147,
-pijama,789,789,789,
+perro,1,1,1,
+gato,2,2,2,
+perico,3,3,3,
+cocodrilo,4,4,4,
+obeja,5,5,5,
