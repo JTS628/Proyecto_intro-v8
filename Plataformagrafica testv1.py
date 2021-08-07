@@ -5,7 +5,6 @@ from tkinter import font
 from PIL import Image
 from tkinter import ttk 
 
-
 root = Tk()
 root.title("ventana Principal")
 root.geometry("800x600")
@@ -193,17 +192,22 @@ def ventana_eliminar():
     bt_cerrar_ingreso.pack(side=BOTTOM,pady="20")
 
 def lista():
-    read = open("registroprueba.txt","r")
+    with open("registroprueba.txt","r") as read:
 
-    s = " "
+        s = " "
 
-    while (s):
-        s=read.readline()
-        L=s.split(",")
-        print ("nombre ",L[0],"codigo ",L[1],"cantidad",L[2],"precio",L[3])
-        
-    read.close()
+        while (s):
+            s=read.readline()
+            L=s.split(",")
+            L.get()
+    
             
+#listica = lista()
+
+            
+def comboclick(event):
+    lbl_combo = Label(ventana_mod,text=ld_lista.get())
+    lbl_combo.pack()
 
 
 ventana_mod = ""
@@ -236,10 +240,13 @@ def ventana_modificar():
     ent_modpre = Entry(ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")
     btn_aceptar = Button(ventana_mod, command=modificar,text="Aceptar",font=("comic","12"),bg="#00c132")
 
-
-    ld_lista = ttk.Combobox(ventana_mod,values=lista)
-
-
+    global ld_lista
+    ld_lista = ttk.Combobox(ventana_mod,values=Listita)
+    #ld_lista.current(0)
+    #ld_lista.bind("<ComboboxSelected>",comboclick)
+    ld_lista.pack()
+        
+    
 
     
     lbl_mod.pack(side=TOP,pady="20")

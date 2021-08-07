@@ -1,15 +1,10 @@
 
-import os
+with open ("registroprueba.txt","r") as read:
+    leer = read.read()
+    print (leer[1])
+    read.close()
 
+#ld_lista = ttk.Combobox(root,values=lista)
+#ld_lista.pack()
 
-read = open("registroprueba.txt","r")
-
-s = " "
-
-while (s):
-    s=read.readline()
-    L=s.split(",")
-    print ("nombre ",L[0],"codigo ",L[1],"cantidad",L[2],"precio",L[3])
-    
-read.close()
-
+#root.mainloop()
