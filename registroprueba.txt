@@ -1,8 +1,5 @@
-perro,1,1,1
-gato,2,2,2
-perico,3,3,3
-cocodrilo,4,4,4
-obeja,5,5,5
-celular,789,789,789
-camadoble,456,456,456
-resortera,771,852,963
+['camisetas', '1', '1', '1']
+['pantalonetas', '2', '2', '2']
+['gorras', '3', '3', '3']
+['bufandas', '4', '4', '4']
+['fajas', '5', '5', '5']
