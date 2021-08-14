@@ -2,8 +2,8 @@ import os
 import sys
 from tkinter import *
 from tkinter import font 
-#from PIL import Image
 from tkinter import ttk 
+from tkinter import messagebox
 
 root = Tk()
 root.title("ventana Principal")
@@ -24,14 +24,27 @@ fotomod=PhotoImage(file="Imagenes\\pi6.png")
 
 
 def enter(event):
-    if ent_usu.get() == "admin" and ent_pass.get() == "admin":
+    
+    if ent_usu.get().lower() == "admin" and ent_pass.get() == "admin":
         root.deiconify()      
         contra.destroy()
+    else:
+        messagebox.showerror(message="Datos Incorrectos, Intente de nuevo")
+        ent_usu.delete(0,END)
+        ent_pass.delete(0,END)
+        
+        
+
 
 def ingreso():
-    if ent_usu.get() == "admin" and ent_pass.get() == "admin":
+    if ent_usu.get().lower() == "admin" and ent_pass.get() == "admin":
         root.deiconify()      
         contra.destroy()
+    else:
+        messagebox.showerror(message="Datos Incorrectos, Intente de nuevo")
+        ent_usu.delete(0,END)
+        ent_pass.delete(0,END)
+    
 
 def cancelar_login():
     contra.destroy()
@@ -58,19 +71,19 @@ def regreso_mod():
 
 
 def guardar():
-    
+    """
     global Inventario
     Inventario = []
     Inventario.append(ent_nombre.get())
     Inventario.append(ent_codigo.get())
     Inventario.append(ent_cantidad.get())
     Inventario.append(ent_precio.get())
-    
-    with open ("registroprueba.txt","a") as archivo:
-        archivo.write(str(Inventario))
-        archivo.write("\n")
-       
     """
+    #with open ("registroprueba.txt","a") as archivo:
+     #   archivo.write(str(Inventario))
+      #  archivo.write("\n")
+       
+    
     with open ("registroprueba.txt","a") as archivo:
         archivo.write(str(ent_nombre.get()))
         archivo.write(str(","))
@@ -79,14 +92,15 @@ def guardar():
         archivo.write(str(ent_cantidad.get()))
         archivo.write(str(","))
         archivo.write(str(ent_precio.get()))
-        archivo.write(str(","))
+        #archivo.write(str(","))
         archivo.write("\n")
-    """
+    
 
     ent_nombre.delete(0,END)
     ent_codigo.delete(0,END) 
     ent_cantidad.delete(0,END) 
     ent_precio.delete(0,END)
+    messagebox.showinfo(message="Producto Agregado")
 
 
 def mostrar():
@@ -100,7 +114,8 @@ def modificar():
     read = open("registroprueba.txt","r")
     reemplazo = open ("temporal","w")
 
-    busqueda = ent_modcual.get()
+    #busqueda = ent_modcual.get()
+    busqueda = ld_lista.get()
 
     s = " "
 
@@ -295,17 +310,13 @@ def ventana_modificar():
     ent_modpre = Entry(ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")
     btn_aceptar = Button(ventana_mod, command=modificar,text="Aceptar",font=("comic","12"),bg="#CCFFE5")
 
-    #global ld_lista
-    #ld_lista = ttk.Combobox(ventana_mod,values=Listita)
-    #ld_lista.current(0)
-    #ld_lista.bind("<ComboboxSelected>",comboclick)
-    #ld_lista.pack()
-        
+    
+
     
     
     lbl_mod.place(x="100",y="50")
     lbl_modcual.place(x="30",y="150")
-    ent_modcual.place(x="350",y="150")
+    #ent_modcual.place(x="350",y="150")
     lbl_modnom.place(x="30",y="200")
     ent_modnom.place(x="350",y="200")
     lbl_modcod.place(x="30",y="250")
@@ -316,8 +327,22 @@ def ventana_modificar():
     ent_modpre.place(x="350",y="350")
     btn_aceptar.place(x="250",y="500")
 
-
-
+    read = open("registroprueba.txt","r")
+    s = " "
+    todadata=" "
+    while (s):
+        s=read.readline()
+        L=s.split(",")
+        data = str(L[0])
+        todadata = todadata + data  + "\n"
+        print(todadata)
+         
+    read.close()
+    global ld_lista
+    ld_lista = ttk.Combobox(ventana_mod,values=todadata,width="30")
+    ld_lista.place(x="350",y="150")
+    
+    
 
 #Menu ------------------------------------------------------------------------------------------
 

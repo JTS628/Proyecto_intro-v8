@@ -1,6 +1,9 @@
-['camisetas', '1', '1', '1']
-['pantalonetas', '2', '2', '2']
-['gorras', '3', '3', '3']
-['bufandas', '4', '4', '4']
-['fajas', '5', '5', '5']
-['calculadora', '123', '456', '789']
+
+cintura,1,1,1
+corazon,156,654,852
+cabeza,3,3,3
+hombro,4,4,4
+estomago,5,5,5
+nariz,6,6,6
+Papochi,789,456,13
+pulmon,789852,852,963
