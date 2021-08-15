@@ -207,8 +207,43 @@ def ventana_consulta():
     bt_cerrar_ingreso.place(x=300, y=550 )
     lbl_mostrar= Label(ventana_cons,text="Consulta de Productos",font=("Arial","19"),bg="#202020",fg="White")
     lbl_mostrar.place(x=150,y=50)
-    btn_mostrar = Button(ventana_cons,text="Mostrar",command=mostrar)
-    btn_mostrar.place(x=300, y=150)
+    #btn_mostrar = Button(ventana_cons,text="Mostrar",command=mostrar)
+    #btn_mostrar.place(x=300, y=150)
+    lbl_titulo = Label(ventana_cons,text="| Producto |  Codigo | Cantidad | Precio | " )
+    lbl_titulo.place(x=120,y=180)
+    
+    abrir = open("registroprueba.txt","r")
+    consulta = abrir.read()
+    texto = Text(ventana_cons,width=40,height=10)
+    texto.insert(END,consulta)
+    texto.place(x=120,y=200)
+    
+    read = open("registroprueba.txt","r")
+    s = " "
+    todadata=" "
+    while (s):
+        s=read.readline()
+        L=s.split(",")
+        N1 = int(L[2])
+        N2 = int(L[3])
+        mulplicacion = (N1*N2)
+        print ("El total de", L[0] ,"en inventario es de", mulplicacion)
+        data = str(L)
+        todadata = todadata + data  + "\n"
+    read.close()
+    Text ()
+
+
+
+
+
+
+
+
+
+
+
+
    
       
 ventana_elim = ""
@@ -253,27 +288,6 @@ def ventana_eliminar():
 
     btn_aceptar.place(x="250",y="500")
 
-
-
-def lista():
-    with open("registroprueba.txt","r") as read:
-
-        s = " "
-
-        while (s):
-            s=read.readline()
-            L=s.split(",")
-            ld_lista = ttk.Combobox(ventana_mod,values=L)
-            ld_lista.pack()
-            
-    
-            
-#listica = lista()
-
-            
-#def comboclick(event):
- #   lbl_combo = Label(ventana_mod,text=ld_lista.get())
-  #  lbl_combo.pack()
 
 
 ventana_mod = ""

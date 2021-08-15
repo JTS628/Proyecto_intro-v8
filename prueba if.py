@@ -39,24 +39,39 @@ ld_lista = ttk.Combobox(root,values=todadata)
 ld_lista.pack()
 """
 
-read = open("registroprueba2.txt","r")
-s = " "
-todadata=" "
+read = open("registroprueba.txt","r")
+
+s =" "
+
 while (s):
     s=read.readline()
     L=s.split(",")
-    #print(L[0])
-    data = str(L[0])
-    todadata = todadata + data  + "\n"
-    print(todadata)
-    
-        
+    L2 = str(L)
+    n1=int(L2[1])
+
+    print (n1)
+
+
+
+"""   
+for I in L:
+    N1 = int(L[2])
+    N2 = int(L[3])
+    multi = N1*N2
+    print (multi)
+
+    if len (s) > 0:
+        if L [0] == busqueda:
+            nombre = input ("ingrese el nombre ")
+            codigo = input ("ingrese el codigo ")
+            cantidad = input ("ingrese la cantidad ")
+            precio = input ("ingrese la cantidad ")
+            reemplazo.write(nombre +","+codigo+","+cantidad+","+precio+"\n")
+        else:
+            reemplazo.write(s)
+
 read.close()
 
-
-
-ld_lista = ttk.Combobox(root,values=todadata)
-ld_lista.pack()
 
     #s = " "
     #global pr
@@ -71,4 +86,5 @@ ld_lista.pack()
 #dropotion.pack(pady=50)
        
 
-root.mainloop()
+#root.mainloop()
+"""
