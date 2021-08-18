@@ -1,4 +1,3 @@
-
 mano,9,9,9
 corazon,156,654,852
 cabeza,3,3,3

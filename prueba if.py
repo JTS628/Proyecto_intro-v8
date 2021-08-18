@@ -38,7 +38,7 @@ with open("registroprueba2.txt","r") as read:
 ld_lista = ttk.Combobox(root,values=todadata)
 ld_lista.pack()
 """
-
+"""
 read = open("registroprueba.txt","r")
 
 s =" "
@@ -50,7 +50,7 @@ while (s):
     n1=int(L2[1])
 
     print (n1)
-
+"""
 
 
 """   
@@ -88,3 +88,25 @@ read.close()
 
 #root.mainloop()
 """
+read = open("registroprueba.txt","r")
+s = " "
+todadata=" "
+
+while (s):
+    s=read.readline()
+    L=s.split(",")
+    N1 = int(L[2])
+    N2 = int(L[3])
+    mulplicacion = (N1*N2)
+    print ("El total de", L[0] ,"en inventario es de", mulplicacion)
+    data = str(L)
+    todadata = todadata + data  + "\n"
+    lblinfo = Label(text="El Total de").pack()
+    #lblinfo1 = Label(text=N1).pack()
+    lblinfo2 = Label(text=" es de ").pack()
+    lblinfo3 = Label (text=mulplicacion).pack()
+
+read.close()
+
+root.mainloop()
+
