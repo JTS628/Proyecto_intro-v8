@@ -6,3 +6,5 @@ Producto:Almohadas |  Codigo:01102 |  Cantidad:12 |  Precio:7000
  |  Valor Inventario:84000
 Producto:Espejo Grande |  Codigo:10110 |  Cantidad:6 |  Precio:6000
  |  Valor Inventario:36000
+Producto:Banca |  Codigo:0111 |  Cantidad:11 |  Precio:65000
+ |  Valor Inventario:715000

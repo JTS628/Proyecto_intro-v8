@@ -12,7 +12,7 @@ root.config(background="#202020")
 root.withdraw()
 
 
-foto=PhotoImage(file="Imagenes\\pi8.png")
+foto=PhotoImage(file="Imagenes\\Image_Hyper.png")
 lblfoto = Label(root,image=foto)
 lblfoto.pack()
 
@@ -20,6 +20,7 @@ fotoing=PhotoImage(file="Imagenes\\pi2.png")
 fotocons=PhotoImage(file="Imagenes\\pi3.png")
 fotodel=PhotoImage(file="Imagenes\\pi4.png")
 fotomod=PhotoImage(file="Imagenes\\pi6.png")
+fotoprin1 = PhotoImage(file="Imagenes\\md6.png")
 
 
 
@@ -32,7 +33,6 @@ def enter(event):
         messagebox.showerror(message="Datos Incorrectos, Intente de nuevo")
         ent_usu.delete(0,END)
         ent_pass.delete(0,END)
-        
         
 
 
@@ -104,11 +104,41 @@ def guardar():
 
 
 def mostrar():
-    abrir = open("registroprueba.txt","r")
+    read = open("registroprueba.txt","r")
+
+    s = " "
+    
+    os.remove("reporte.txt")
+    while (s):
+        s=read.readline()
+        L=s.split(",")
+        for I in L[3::4]:
+            N1 = int(L[2])
+            N2 = int(L[3])
+            multi = N1*N2
+            print (L[0],N1,N2,multi)
+            with open ("reporte.txt","a") as reporte:
+                reporte.write("Producto:")
+                reporte.write(L[0])
+                reporte.write(" | ")
+                reporte.write(" Codigo:")
+                reporte.write(L[1])
+                reporte.write(" | ")
+                reporte.write(" Cantidad:")
+                reporte.write(L[2])
+                reporte.write(" | ")
+                reporte.write(" Precio:")
+                reporte.write(L[3])
+                reporte.write(" | ")
+                reporte.write(" Valor Inventario:")
+                reporte.write(str(multi))
+                reporte.write("\n")
+
+    abrir = open("reporte.txt","r")
     consulta = abrir.read()
-    texto = Text(ventana_cons,width=40,height=10)
+    texto = Text(ventana_cons,width=100,height=15)
     texto.insert(END,consulta)
-    texto.place(x=120,y=200)
+    texto.place(x=50,y=250)
     
 def modificar():
     read = open("registroprueba.txt","r")
@@ -141,6 +171,8 @@ def modificar():
     ent_modcod.delete(0,END)
     ent_modcant.delete(0,END)
     ent_modpre.delete(0,END)
+    messagebox.showinfo(message="Producto Modificado")
+    
 
 
 
@@ -158,6 +190,10 @@ def ventana_ingreso():
 
     lblfotoing = Label(ventana_ing,image=fotoing)
     lblfotoing.pack()
+
+    #lblfotoing_ing = Label(ventana_ing,image=fotoprin1)
+    #lblfotoing_ing.pack()
+
 
     bt_cerrar_ingreso=Button(ventana_ing,text="Regresar",command=regreso_ing,font=("Arial","14"),foreground="#193300")
     bt_cerrar_ingreso.place (x="350",y="450")
@@ -188,6 +224,22 @@ def ventana_ingreso():
     ent_precio.place(x=250,y=330)
     bt_ingreso_registo = Button(ventana_ing,command=guardar,text="Guardar",font=("Arial","14"),foreground="#202020")
     bt_ingreso_registo.place (x="250",y="450")
+    """
+    menuPri_ing = Menu(ventana_ing)
+    ventana_ing.config(menu=menuPri_ing)
+    Ingresar = Menu(menuPri_ing)
+    menuPri.add_cascade(label="Ingresar",menu=Ingresar)
+    Ingresar.add_command(label="Ir a Ventana Ingresar",command=ventana_ingreso)
+    Consultar = Menu(menuPri_ing)
+    menuPri.add_cascade(label="Consultar",menu=Consultar)
+    Consultar.add_command(label="Ir a Ventana Consultar",command=ventana_consulta)
+    Eliminar = Menu(menuPri_ing)
+    menuPri.add_cascade(label="Elimiar",menu=Eliminar)
+    Eliminar.add_command(label="Ir a Ventana Eliminar",command=ventana_eliminar)
+    Modificar = Menu(menuPri_ing)
+    menuPri.add_cascade(label="Modificar",menu=Modificar)
+    Modificar.add_command(label="Ir a Ventana Modificar",command=ventana_modificar)
+    """
 
 texto = ""
 ventana_cons =""
@@ -195,7 +247,7 @@ def ventana_consulta():
     global ventana_cons
     ventana_cons = Toplevel(root)
     root.withdraw()
-    ventana_cons.geometry("600x600")
+    ventana_cons.geometry("900x600")
     ventana_cons.title("Consulta de productos")
     ventana_cons.config(background="#202020")
 
@@ -204,76 +256,112 @@ def ventana_consulta():
 
 
     bt_cerrar_ingreso=Button(ventana_cons,text="Regresar",command=regreso_cons)
-    bt_cerrar_ingreso.place(x=300, y=550 )
-    lbl_mostrar= Label(ventana_cons,text="Consulta de Productos",font=("Arial","19"),bg="#202020",fg="White")
-    lbl_mostrar.place(x=150,y=50)
-    btn_mostrar = Button(ventana_cons,text="Mostrar",command=mostrar)
-    btn_mostrar.place(x=300, y=150)
+    bt_cerrar_ingreso.place(x=400, y=550 )
+    lbl_mostrar= Label(ventana_cons,text="Consulta de Productos",font=("Arial","22"),bg="#202020",fg="White")
+    lbl_mostrar.place(x=250,y=50)
+    #btn_mostrar = Button(ventana_cons,text="Mostrar",command=mostrar)
+    #btn_mostrar.place(x=300, y=150)
+    lblt_titulo = Label(ventana_cons,text="A continuacion se muestran los Productos, sus, Codigos, Cantidad de unidades, ",bg="#202020",fg="White",font=("Arial", "14"))
+    lblt_titulo.place(x="90",y="165")
+    lblt1_titulo = Label(ventana_cons,text="su precio unitario. Asi como su valor total en inventario.",bg="#202020",fg="White",font=("Arial", "14"))
+    lblt1_titulo.place(x="165",y="195")
+    
+    """
+    abrir = open("registroprueba.txt","r")
+    consulta = abrir.read()
+    texto = Text(ventana_cons,width=40,height=10)
+    texto.insert(END,consulta)
+    texto.place(x=120,y=200)
+    """
+    read = open("registroprueba.txt","r")
+
+    s = " "
+    
+    os.remove("reporte.txt")
+    while (s):
+        s=read.readline()
+        L=s.split(",")
+        for I in L[3::4]:
+            N1 = int(L[2])
+            N2 = int(L[3])
+            multi = N1*N2
+            print (L[0],N1,N2,multi)
+            with open ("reporte.txt","a") as reporte:
+                reporte.write("Producto:")
+                reporte.write(L[0])
+                reporte.write(" | ")
+                reporte.write(" Codigo:")
+                reporte.write(L[1])
+                reporte.write(" | ")
+                reporte.write(" Cantidad:")
+                reporte.write(L[2])
+                reporte.write(" | ")
+                reporte.write(" Precio:")
+                reporte.write(L[3])
+                reporte.write(" | ")
+                reporte.write(" Valor Inventario:")
+                reporte.write(str(multi))
+                reporte.write("\n")
+
+    abrir = open("reporte.txt","r")
+    consulta = abrir.read()
+    texto = Text(ventana_cons,width=95,height=15)
+    texto.insert(END,consulta)
+    texto.place(x=50,y=250)
    
+    
+   
+   
+
+
       
 ventana_elim = ""
 def ventana_eliminar():
-    global ventana_mod
-    ventana_mod = Toplevel(root)
+    global ventana_elim
+    ventana_elim = Toplevel(root)
     root.withdraw()
-    ventana_mod.geometry("600x600")
-    ventana_mod.title("Modificacion de productos")
-    ventana_mod.config(background="#202020") 
+    ventana_elim.geometry("600x600")
+    ventana_elim.title("Eliminacion de productos")
+    ventana_elim.config(background="#202020") 
 
-    lblfotomod = Label(ventana_mod,image=fotomod)
-    lblfotomod.pack()
+    labelfotofond = Label(ventana_mod,image=fotomod)
+    labelfotofond.pack()
 
-    bt_cerrar_ingreso=Button(ventana_mod,text="Regresar",command=regreso_mod,font=("Times new Roman","12"),bg="#E0E0E0")
-    bt_cerrar_ingreso.place(x="350",y="500")
+    bt_cerrar_ventana=Button(ventana_mod,text="Regresar",command=regreso_mod,font=("Times new Roman","12"),bg="#E0E0E0")
+    bt_cerrar_ventana.place(x="350",y="500")
 
-    global ent_modcual
-    global ent_modnom
-    global ent_modcod
-    global ent_modcant
-    global ent_modpre
-
+    global ent_defcual
+    
     lbl_mod = Label(ventana_mod,text="Eliminacion de productos",font=("Arial","22"),fg="white",bg="#202020")
-    lbl_modcual = Label(ventana_mod,text="Ingrese el producto a eliminar",font=("Arial","14"),fg="#FF6666",bg="#202020")
-    ent_modcual = Entry(ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")  
-       
-  
-    btn_aceptar = Button(ventana_mod, command=os.remove,text="Eliminar",font=("comic","12"),bg="red")
+    lbl_modcual = Label(ventana_mod,text="Cual producto desea eliminar?",font=("Arial","14"),fg="#FF6666",bg="#202020")
+    ent_defcual = Entry(ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")  
+    btn_aceptar = Button(ventana_mod, command=os.remove,text="Eliminar",font=("comic","12"),bg="#CCFFE5")
 
-    #global ld_lista
-    #ld_lista = ttk.Combobox(ventana_mod,values=Listita)
-    #ld_lista.current(0)
-    #ld_lista.bind("<ComboboxSelected>",comboclick)
-    #ld_lista.pack()
-        
+    
+
     
     
     lbl_mod.place(x="100",y="50")
     lbl_modcual.place(x="30",y="150")
-    ent_modcual.place(x="350",y="150")
-
-    btn_aceptar.place(x="250",y="500")
-
-
-
-def lista():
-    with open("registroprueba.txt","r") as read:
-
-        s = " "
-
-        while (s):
-            s=read.readline()
-            L=s.split(",")
-            ld_lista = ttk.Combobox(ventana_mod,values=L)
-            ld_lista.pack()
-            
+    #ent_modcual.place(x="350",y="150")
     
-            
-#listica = lista()
+    btn_aceptar.place(x="250",y="500")
+    read = open("registroprueba.txt","r")
+    s = " "
+    todadata=" "
+    while (s):
+        s=read.readline()
+        L=s.split(",")
+        data = str(L[0])
+        todadata = todadata + data  + "\n"
+        print(todadata)
+         
+    read.close()
+    global ld_lista
+    ld_lista = ttk.Combobox(ventana_mod,values=todadata,width="30")
+    ld_lista.place(x="350",y="150")
 
-            
-#def comboclick(event):
- #   lbl_combo = Label(ventana_mod,text=ld_lista.get())
-  #  lbl_combo.pack()
+
 
 
 ventana_mod = ""
@@ -297,7 +385,11 @@ def ventana_modificar():
     global ent_modcant
     global ent_modpre
 
+    
+
     lbl_mod = Label(ventana_mod,text="Modificacion de productos",font=("Arial","22"),fg="white",bg="#202020")
+    lblt_info1 = Label(ventana_mod,text="A continuacion se permite modificar los production en existencia.",bg="#202020",fg="White",font=("Arial", "14"))
+    lblt_info1.place(x="30",y="110")
     lbl_modcual = Label(ventana_mod,text="Cual producto desea modificar?",font=("Arial","14"),fg="#FF6666",bg="#202020")
     ent_modcual = Entry(ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")  
     lbl_modnom = Label(ventana_mod,text="Nombre del nuevo producto?",font=("Arial","14"),fg="#CCFFE5",bg="#202020")
@@ -310,21 +402,18 @@ def ventana_modificar():
     ent_modpre = Entry(ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")
     btn_aceptar = Button(ventana_mod, command=modificar,text="Aceptar",font=("comic","12"),bg="#CCFFE5")
 
-    
-
-    
-    
+   
     lbl_mod.place(x="100",y="50")
-    lbl_modcual.place(x="30",y="150")
+    lbl_modcual.place(x="30",y="180")
     #ent_modcual.place(x="350",y="150")
-    lbl_modnom.place(x="30",y="200")
-    ent_modnom.place(x="350",y="200")
-    lbl_modcod.place(x="30",y="250")
-    ent_modcod.place(x="350",y="250")
-    lbl_modcant.place(x="30",y="300")
-    ent_modcant.place(x="350",y="300")
-    lbl_modpre.place(x="30",y="350")
-    ent_modpre.place(x="350",y="350")
+    lbl_modnom.place(x="30",y="250")
+    ent_modnom.place(x="350",y="250")
+    lbl_modcod.place(x="30",y="300")
+    ent_modcod.place(x="350",y="300")
+    lbl_modcant.place(x="30",y="350")
+    ent_modcant.place(x="350",y="350")
+    lbl_modpre.place(x="30",y="400")
+    ent_modpre.place(x="350",y="400")
     btn_aceptar.place(x="250",y="500")
 
     read = open("registroprueba.txt","r")
@@ -340,18 +429,32 @@ def ventana_modificar():
     read.close()
     global ld_lista
     ld_lista = ttk.Combobox(ventana_mod,values=todadata,width="30")
-    ld_lista.place(x="350",y="150")
+    ld_lista.place(x="350",y="180")
     
     
 
 #Menu ------------------------------------------------------------------------------------------
 
-lbl_opciones=Label(root,text="Menu de opciones",font=("Helvetica","19"),foreground="#CCFFE5",background="#052851",height="1",width="55")
-bt_ingreso=Button(root,text="Ingresar",command=ventana_ingreso,font=("Helvetica","17"),foreground="#CCFFE5",background="#808080",height="1",width="10")
-bt_consulta=Button(root,text="Consultar",command=ventana_consulta,font=("Helvetica","17"),foreground="#CCFFE5",background="#808080",height="1",width="10")
-bt_eliminar=Button(root,text="Eliminar",command=ventana_eliminar,font=("Helvetica","17"),foreground="#CCFFE5",background="#808080",height="1",width="10")
+lbl_opciones=Label(root,text="Menu de opciones",font=("Helvetica","23"),foreground="#000033",background="#FFE5CC",height="1",width="15")
+lbl_habla=Label(root,text="Bienvenido",font=("Helvetica","16"),foreground="#000033",background="white",height="1",width="9")
+lbl_habla1=Label(root,text="El sistema de manipulacion de inventario le permitira llevar",font=("Helvetica","16"),foreground="#000033",background="white",height="1",width="48")
+lbl_habla2=Label(root,text="un registro claro y ordenado de todo tipo de productos.",font=("Helvetica","16"),foreground="#000033",background="white",height="1",width="48")
+lbl_habla3=Label(root,text="Ademas de brindarle información sobre el estado del mismo.",font=("Helvetica","16"),foreground="#000033",background="white",height="1",width="48")
+lbl_habla4=Label(root,text="Por favor elija una opción del menú",font=("Helvetica","16"),foreground="#000033",background="white",height="1",width="30")
+
+bt_ingreso=Button(root,text="Ingresar",command=ventana_ingreso,font=("Helvetica","17"),foreground="#CCFFE5",background="#606060",height="1",width="10")
+bt_consulta=Button(root,text="Consultar",command=ventana_consulta,font=("Helvetica","17"),foreground="#CCFFE5",background="#606060",height="1",width="10")
+bt_eliminar=Button(root,text="Eliminar",command=ventana_eliminar,font=("Helvetica","17"),foreground="#CCFFE5",background="#606060",height="1",width="10")
 bt_modificar=Button(root,text="Modificar",command=ventana_modificar,font=("Helvetica","17"),foreground="#CCFFE5",background="#808080",height="1",width="10")
-lbl_opciones.place(y="50")
+lbl_opciones.place(x="255",y="42")
+lbl_habla.place(x="310",y="130")
+lbl_habla1.place(x="100",y="180")
+lbl_habla2.place(x="100",y="230")
+lbl_habla3.place(x="100",y="280")
+lbl_habla4.place(x="220",y="390")
+
+
+
 bt_ingreso.place(x="100", y="450")
 bt_consulta.place(x="250", y="450")
 bt_eliminar.place(x="400", y="450")
@@ -392,22 +495,15 @@ lbl1.place(x="170",y="225")
 
 menuPri = Menu(root)
 root.config(menu=menuPri)
-
 Ingresar = Menu(menuPri)
 menuPri.add_cascade(label="Ingresar",menu=Ingresar)
 Ingresar.add_command(label="Ir a Ventana Ingresar",command=ventana_ingreso)
-
-
 Consultar = Menu(menuPri)
 menuPri.add_cascade(label="Consultar",menu=Consultar)
 Consultar.add_command(label="Ir a Ventana Consultar",command=ventana_consulta)
-
-
 Eliminar = Menu(menuPri)
 menuPri.add_cascade(label="Elimiar",menu=Eliminar)
 Eliminar.add_command(label="Ir a Ventana Eliminar",command=ventana_eliminar)
-
-
 Modificar = Menu(menuPri)
 menuPri.add_cascade(label="Modificar",menu=Modificar)
 Modificar.add_command(label="Ir a Ventana Modificar",command=ventana_modificar)
