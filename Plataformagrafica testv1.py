@@ -12,7 +12,7 @@ root.config(background="#202020")
 root.withdraw()
 
 
-foto=PhotoImage(file="Imagenes\\pi8.png")
+foto=PhotoImage(file="Imagenes\\Image_Hyper.png")
 lblfoto = Label(root,image=foto)
 lblfoto.pack()
 
@@ -104,11 +104,41 @@ def guardar():
 
 
 def mostrar():
-    abrir = open("registroprueba.txt","r")
+    read = open("registroprueba.txt","r")
+
+    s = " "
+    
+    os.remove("reporte.txt")
+    while (s):
+        s=read.readline()
+        L=s.split(",")
+        for I in L[3::4]:
+            N1 = int(L[2])
+            N2 = int(L[3])
+            multi = N1*N2
+            print (L[0],N1,N2,multi)
+            with open ("reporte.txt","a") as reporte:
+                reporte.write("Producto:")
+                reporte.write(L[0])
+                reporte.write(" | ")
+                reporte.write(" Codigo:")
+                reporte.write(L[1])
+                reporte.write(" | ")
+                reporte.write(" Cantidad:")
+                reporte.write(L[2])
+                reporte.write(" | ")
+                reporte.write(" Precio:")
+                reporte.write(L[3])
+                reporte.write(" | ")
+                reporte.write(" Valor Inventario:")
+                reporte.write(str(multi))
+                reporte.write("\n")
+
+    abrir = open("reporte.txt","r")
     consulta = abrir.read()
-    texto = Text(ventana_cons,width=40,height=10)
+    texto = Text(ventana_cons,width=100,height=15)
     texto.insert(END,consulta)
-    texto.place(x=120,y=200)
+    texto.place(x=50,y=250)
     
 def modificar():
     read = open("registroprueba.txt","r")
@@ -195,7 +225,7 @@ def ventana_consulta():
     global ventana_cons
     ventana_cons = Toplevel(root)
     root.withdraw()
-    ventana_cons.geometry("600x600")
+    ventana_cons.geometry("900x600")
     ventana_cons.title("Consulta de productos")
     ventana_cons.config(background="#202020")
 
@@ -204,44 +234,62 @@ def ventana_consulta():
 
 
     bt_cerrar_ingreso=Button(ventana_cons,text="Regresar",command=regreso_cons)
-    bt_cerrar_ingreso.place(x=300, y=550 )
-    lbl_mostrar= Label(ventana_cons,text="Consulta de Productos",font=("Arial","19"),bg="#202020",fg="White")
-    lbl_mostrar.place(x=150,y=50)
+    bt_cerrar_ingreso.place(x=400, y=550 )
+    lbl_mostrar= Label(ventana_cons,text="Consulta de Productos",font=("Arial","22"),bg="#202020",fg="White")
+    lbl_mostrar.place(x=250,y=50)
     #btn_mostrar = Button(ventana_cons,text="Mostrar",command=mostrar)
     #btn_mostrar.place(x=300, y=150)
-    lbl_titulo = Label(ventana_cons,text="| Producto |  Codigo | Cantidad | Precio | " )
-    lbl_titulo.place(x=120,y=180)
+    lblt_titulo = Label(ventana_cons,text="A continuacion se muestran los Productos, sus, Codigos, Cantidad de unidades, ",bg="#202020",fg="White",font=("Arial", "14"))
+    lblt_titulo.place(x=90,y=165)
+    lblt1_titulo = Label(ventana_cons,text="su precio unitario. Asi como su valor total en inventario.",bg="#202020",fg="White",font=("Arial", "14"))
+    lblt1_titulo.place(x=165,y=195)
     
+    """
     abrir = open("registroprueba.txt","r")
     consulta = abrir.read()
     texto = Text(ventana_cons,width=40,height=10)
     texto.insert(END,consulta)
     texto.place(x=120,y=200)
-    
+    """
     read = open("registroprueba.txt","r")
+
     s = " "
-    todadata=" "
+    
+    os.remove("reporte.txt")
     while (s):
         s=read.readline()
         L=s.split(",")
-        N1 = int(L[2])
-        N2 = int(L[3])
-        mulplicacion = (N1*N2)
-        print ("El total de", L[0] ,"en inventario es de", mulplicacion)
-        data = str(L)
-        todadata = todadata + data  + "\n"
-    read.close()
-    Text ()
+        for I in L[3::4]:
+            N1 = int(L[2])
+            N2 = int(L[3])
+            multi = N1*N2
+            print (L[0],N1,N2,multi)
+            with open ("reporte.txt","a") as reporte:
+                reporte.write("Producto:")
+                reporte.write(L[0])
+                reporte.write(" | ")
+                reporte.write(" Codigo:")
+                reporte.write(L[1])
+                reporte.write(" | ")
+                reporte.write(" Cantidad:")
+                reporte.write(L[2])
+                reporte.write(" | ")
+                reporte.write(" Precio:")
+                reporte.write(L[3])
+                reporte.write(" | ")
+                reporte.write(" Valor Inventario:")
+                reporte.write(str(multi))
+                reporte.write("\n")
 
-
-
-
-
-
-
-
-
-
+    abrir = open("reporte.txt","r")
+    consulta = abrir.read()
+    texto = Text(ventana_cons,width=95,height=15)
+    texto.insert(END,consulta)
+    texto.place(x=50,y=250)
+   
+    
+   
+   
 
 
    
@@ -365,12 +413,26 @@ def ventana_modificar():
 
 #Menu ------------------------------------------------------------------------------------------
 
-lbl_opciones=Label(root,text="Menu de opciones",font=("Helvetica","19"),foreground="#CCFFE5",background="#052851",height="1",width="55")
-bt_ingreso=Button(root,text="Ingresar",command=ventana_ingreso,font=("Helvetica","17"),foreground="#CCFFE5",background="#808080",height="1",width="10")
-bt_consulta=Button(root,text="Consultar",command=ventana_consulta,font=("Helvetica","17"),foreground="#CCFFE5",background="#808080",height="1",width="10")
-bt_eliminar=Button(root,text="Eliminar",command=ventana_eliminar,font=("Helvetica","17"),foreground="#CCFFE5",background="#808080",height="1",width="10")
+lbl_opciones=Label(root,text="Menu de opciones",font=("Helvetica","23"),foreground="#000033",background="#FFE5CC",height="1",width="15")
+lbl_habla=Label(root,text="Bienvenido",font=("Helvetica","16"),foreground="#000033",background="white",height="1",width="9")
+lbl_habla1=Label(root,text="El sistema de manipulacion de inventario le permitira llevar",font=("Helvetica","16"),foreground="#000033",background="white",height="1",width="48")
+lbl_habla2=Label(root,text="un registro claro y ordenado de todo tipo de productos.",font=("Helvetica","16"),foreground="#000033",background="white",height="1",width="48")
+lbl_habla3=Label(root,text="Ademas de brindarle información sobre el estado del mismo.",font=("Helvetica","16"),foreground="#000033",background="white",height="1",width="48")
+lbl_habla4=Label(root,text="Por favor elija una opción del menú",font=("Helvetica","16"),foreground="#000033",background="white",height="1",width="30")
+
+bt_ingreso=Button(root,text="Ingresar",command=ventana_ingreso,font=("Helvetica","17"),foreground="#CCFFE5",background="#606060",height="1",width="10")
+bt_consulta=Button(root,text="Consultar",command=ventana_consulta,font=("Helvetica","17"),foreground="#CCFFE5",background="#606060",height="1",width="10")
+bt_eliminar=Button(root,text="Eliminar",command=ventana_eliminar,font=("Helvetica","17"),foreground="#CCFFE5",background="#606060",height="1",width="10")
 bt_modificar=Button(root,text="Modificar",command=ventana_modificar,font=("Helvetica","17"),foreground="#CCFFE5",background="#808080",height="1",width="10")
-lbl_opciones.place(y="50")
+lbl_opciones.place(x="255",y="42")
+lbl_habla.place(x="310",y="130")
+lbl_habla1.place(x="100",y="180")
+lbl_habla2.place(x="100",y="230")
+lbl_habla3.place(x="100",y="280")
+lbl_habla4.place(x="220",y="390")
+
+
+
 bt_ingreso.place(x="100", y="450")
 bt_consulta.place(x="250", y="450")
 bt_eliminar.place(x="400", y="450")

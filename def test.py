@@ -1,62 +1,35 @@
-def guardar():
-    Inventario = []
-    nombre = ing_nombre.get()
-    codigo = ing_codigo.get()
-    cantidad = ing_cantidad.get()
-    precio = ing_precio.get()
-    Inventario.append(nombre)
-    Inventario.append(codigo)
-    Inventario.append(cantidad)
-    Inventario.append(precio)
+import os
 
-    with open ("registroprueba.txt","a") as archivo:
-        archivo.write(str(Inventario))
-        archivo.write("\n")
+read = open("registroprueba.txt","r")
 
+s = " "
+todadata=" "
+os.remove("reporte.txt")
+while (s):
+    s=read.readline()
+    L=s.split(",")
+    for I in L[3::4]:
+        N1 = int(L[2])
+        N2 = int(L[3])
+        multi = N1*N2
+        print (L[0],N1,N2,multi)
+        with open ("reporte.txt","a") as reporte:
+            reporte.write("Producto:")
+            reporte.write(L[0])
+            reporte.write(" | ")
+            reporte.write(" Codigo:")
+            reporte.write(L[1])
+            reporte.write(" | ")
+            reporte.write(" Cantidad:")
+            reporte.write(L[2])
+            reporte.write(" | ")
+            reporte.write(" Precio:")
+            reporte.write(L[3])
+            reporte.write(" | ")
+            reporte.write(" Valor Inventario:")
+            reporte.write(str(multi))
+            reporte.write("\n")
+            
+        
 
-    
-
-global ventana_ing
-ventana_ing = Toplevel(root)
-
-ventana_ing.geometry("600x600")
-ventana_ing.title("Pantalla de ingrego")
-ventana_ing.config(background="purple")
-bt_cerrar_ingreso=Button(ventana_ing,text="Regresar",command=regreso)
-bt_cerrar_ingreso.pack(side=BOTTOM,padx=20,pady=20)
-
-global ing_nombre
-global ing_codigo 
-global ing_cantidad 
-global ing_precio
-
-
-ing_nombre = StringVar
-ing_codigo = IntVar
-ing_cantidad = IntVar
-ing_precio = IntVar
-
-
-lbl_nombre = Label(ventana_ing,text="ingrese el nombre: ")
-lbl_nombre.pack()
-ent_nombre = Entry(ventana_ing)
-ent_nombre.pack()
-
-lbl_codigo = Label (ventana_ing,text="ingrese el codigo: ")
-lbl_codigo.pack()
-ent_codigo= Entry(ventana_ing,textvariable=ing_codigo)
-ent_codigo.pack()
-
-lbl_cantidad = Label (ventana_ing,text="ingrese la cantidad: ")
-lbl_cantidad.pack()
-ent_cantidad=Entry(ventana_ing,textvariable=ing_cantidad)
-ent_cantidad.pack()
-
-lbl_precio = Label (ventana_ing, text="ingrese el precio: ")
-lbl_precio.pack()
-ent_precio= Entry(ventana_ing,textvariable=ing_precio)
-ent_precio.pack()
-
-
-bt_ingreso_registo = Button(ventana_ing,command=guardar,text="Guardar")
-bt_ingreso_registo.pack()
+read.close()

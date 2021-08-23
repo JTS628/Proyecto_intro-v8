@@ -1,0 +1,3 @@
+Francisco,Fuentes,1,90
+trisha,tulipan,2,95
+calina,solera,3,90

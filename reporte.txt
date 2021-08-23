@@ -1,0 +1,11 @@
+Producto:mano |  Codigo:9 |  Cantidad:9 |  Precio:9 |  Valor Inventario:81
+Producto:corazon |  Codigo:156 |  Cantidad:654 |  Precio:852 |  Valor Inventario:557208
+Producto:cabeza |  Codigo:3 |  Cantidad:3 |  Precio:3 |  Valor Inventario:9
+Producto:hombro |  Codigo:4 |  Cantidad:4 |  Precio:4 |  Valor Inventario:16
+Producto:Esofago |  Codigo:741 |  Cantidad:18 |  Precio:10
+ |  Valor Inventario:180
+Producto:nariz |  Codigo:6 |  Cantidad:6 |  Precio:6 |  Valor Inventario:36
+Producto:Papochi |  Codigo:789 |  Cantidad:456 |  Precio:13 |  Valor Inventario:5928
+Producto:pulmon |  Codigo:789852 |  Cantidad:852 |  Precio:963 |  Valor Inventario:820476
+Producto:Taza |  Codigo:123456 |  Cantidad:10 |  Precio:15
+ |  Valor Inventario:150
