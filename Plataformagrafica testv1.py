@@ -240,9 +240,9 @@ def ventana_consulta():
     #btn_mostrar = Button(ventana_cons,text="Mostrar",command=mostrar)
     #btn_mostrar.place(x=300, y=150)
     lblt_titulo = Label(ventana_cons,text="A continuacion se muestran los Productos, sus, Codigos, Cantidad de unidades, ",bg="#202020",fg="White",font=("Arial", "14"))
-    lblt_titulo.place(x=90,y=165)
+    lblt_titulo.place(x="90",y="165")
     lblt1_titulo = Label(ventana_cons,text="su precio unitario. Asi como su valor total en inventario.",bg="#202020",fg="White",font=("Arial", "14"))
-    lblt1_titulo.place(x=165,y=195)
+    lblt1_titulo.place(x="165",y="195")
     
     """
     abrir = open("registroprueba.txt","r")
@@ -364,7 +364,11 @@ def ventana_modificar():
     global ent_modcant
     global ent_modpre
 
+    
+
     lbl_mod = Label(ventana_mod,text="Modificacion de productos",font=("Arial","22"),fg="white",bg="#202020")
+    lblt_info1 = Label(ventana_mod,text="A continuacion se permite modificar los production en existencia.",bg="#202020",fg="White",font=("Arial", "14"))
+    lblt_info1.place(x="30",y="110")
     lbl_modcual = Label(ventana_mod,text="Cual producto desea modificar?",font=("Arial","14"),fg="#FF6666",bg="#202020")
     ent_modcual = Entry(ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")  
     lbl_modnom = Label(ventana_mod,text="Nombre del nuevo producto?",font=("Arial","14"),fg="#CCFFE5",bg="#202020")
@@ -382,16 +386,16 @@ def ventana_modificar():
     
     
     lbl_mod.place(x="100",y="50")
-    lbl_modcual.place(x="30",y="150")
+    lbl_modcual.place(x="30",y="180")
     #ent_modcual.place(x="350",y="150")
-    lbl_modnom.place(x="30",y="200")
-    ent_modnom.place(x="350",y="200")
-    lbl_modcod.place(x="30",y="250")
-    ent_modcod.place(x="350",y="250")
-    lbl_modcant.place(x="30",y="300")
-    ent_modcant.place(x="350",y="300")
-    lbl_modpre.place(x="30",y="350")
-    ent_modpre.place(x="350",y="350")
+    lbl_modnom.place(x="30",y="250")
+    ent_modnom.place(x="350",y="250")
+    lbl_modcod.place(x="30",y="300")
+    ent_modcod.place(x="350",y="300")
+    lbl_modcant.place(x="30",y="350")
+    ent_modcant.place(x="350",y="350")
+    lbl_modpre.place(x="30",y="400")
+    ent_modpre.place(x="350",y="400")
     btn_aceptar.place(x="250",y="500")
 
     read = open("registroprueba.txt","r")
@@ -407,7 +411,7 @@ def ventana_modificar():
     read.close()
     global ld_lista
     ld_lista = ttk.Combobox(ventana_mod,values=todadata,width="30")
-    ld_lista.place(x="350",y="150")
+    ld_lista.place(x="350",y="180")
     
     
 

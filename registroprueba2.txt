@@ -1,7 +1,0 @@
-prueba1,1,1,1
-Prueba2,2,2,2
-Prueba3,3,3,3
-cortaunas,1,1,1
-peine,2,2,2
-espejo,3,3,3
-techo,4,4,4

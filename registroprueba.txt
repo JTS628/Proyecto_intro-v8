@@ -1,9 +1,4 @@
-mano,9,9,9,
-corazon,156,654,852,
-cabeza,3,3,3,
-hombro,4,4,4,
-Esofago,741,18,10
-nariz,6,6,6,
-Papochi,789,456,13,
-pulmon,789852,852,963,
-Taza,123456,10,15
+Mesa,01100,7,150000
+sillas,01101,28,25000
+Almohadas,01102,12,7000
+Espejo Grande,10110,6,6000
