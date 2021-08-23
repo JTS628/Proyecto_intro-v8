@@ -50,8 +50,13 @@ while (s):
     n1=int(L2[1])
 
     print (n1)
+<<<<<<< Updated upstream
 """
 
+=======
+
+"""
+>>>>>>> Stashed changes
 
 """   
 for I in L:
@@ -88,10 +93,18 @@ read.close()
 
 #root.mainloop()
 """
+<<<<<<< Updated upstream
 read = open("registroprueba.txt","r")
 s = " "
 todadata=" "
 
+=======
+
+
+read = open("registroprueba.txt","r")
+s = " "
+todadata=" "
+>>>>>>> Stashed changes
 while (s):
     s=read.readline()
     L=s.split(",")
@@ -101,6 +114,7 @@ while (s):
     print ("El total de", L[0] ,"en inventario es de", mulplicacion)
     data = str(L)
     todadata = todadata + data  + "\n"
+<<<<<<< Updated upstream
     lblinfo = Label(text="El Total de").pack()
     #lblinfo1 = Label(text=N1).pack()
     lblinfo2 = Label(text=" es de ").pack()
@@ -110,3 +124,6 @@ read.close()
 
 root.mainloop()
 
+=======
+read.close()
+>>>>>>> Stashed changes

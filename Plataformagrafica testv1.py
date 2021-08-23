@@ -11,8 +11,12 @@ root.geometry("800x600")
 root.config(background="#202020")
 root.withdraw()
 
+<<<<<<< Updated upstream
 
 foto=PhotoImage(file="Imagenes\\Image_Hyper.png")
+=======
+foto=PhotoImage(file="Imagenes\\pi8.png")
+>>>>>>> Stashed changes
 lblfoto = Label(root,image=foto)
 lblfoto.pack()
 
@@ -20,6 +24,7 @@ fotoing=PhotoImage(file="Imagenes\\pi2.png")
 fotocons=PhotoImage(file="Imagenes\\pi3.png")
 fotodel=PhotoImage(file="Imagenes\\pi4.png")
 fotomod=PhotoImage(file="Imagenes\\pi6.png")
+fotoprin1 = PhotoImage(file="Imagenes\\md6.png")
 
 
 
@@ -32,7 +37,6 @@ def enter(event):
         messagebox.showerror(message="Datos Incorrectos, Intente de nuevo")
         ent_usu.delete(0,END)
         ent_pass.delete(0,END)
-        
         
 
 
@@ -171,6 +175,8 @@ def modificar():
     ent_modcod.delete(0,END)
     ent_modcant.delete(0,END)
     ent_modpre.delete(0,END)
+    messagebox.showinfo(message="Producto Modificado")
+    
 
 
 
@@ -188,6 +194,10 @@ def ventana_ingreso():
 
     lblfotoing = Label(ventana_ing,image=fotoing)
     lblfotoing.pack()
+
+    #lblfotoing_ing = Label(ventana_ing,image=fotoprin1)
+    #lblfotoing_ing.pack()
+
 
     bt_cerrar_ingreso=Button(ventana_ing,text="Regresar",command=regreso_ing,font=("Arial","14"),foreground="#193300")
     bt_cerrar_ingreso.place (x="350",y="450")
@@ -218,6 +228,22 @@ def ventana_ingreso():
     ent_precio.place(x=250,y=330)
     bt_ingreso_registo = Button(ventana_ing,command=guardar,text="Guardar",font=("Arial","14"),foreground="#202020")
     bt_ingreso_registo.place (x="250",y="450")
+    """
+    menuPri_ing = Menu(ventana_ing)
+    ventana_ing.config(menu=menuPri_ing)
+    Ingresar = Menu(menuPri_ing)
+    menuPri.add_cascade(label="Ingresar",menu=Ingresar)
+    Ingresar.add_command(label="Ir a Ventana Ingresar",command=ventana_ingreso)
+    Consultar = Menu(menuPri_ing)
+    menuPri.add_cascade(label="Consultar",menu=Consultar)
+    Consultar.add_command(label="Ir a Ventana Consultar",command=ventana_consulta)
+    Eliminar = Menu(menuPri_ing)
+    menuPri.add_cascade(label="Elimiar",menu=Eliminar)
+    Eliminar.add_command(label="Ir a Ventana Eliminar",command=ventana_eliminar)
+    Modificar = Menu(menuPri_ing)
+    menuPri.add_cascade(label="Modificar",menu=Modificar)
+    Modificar.add_command(label="Ir a Ventana Modificar",command=ventana_modificar)
+    """
 
 texto = ""
 ventana_cons =""
@@ -244,6 +270,7 @@ def ventana_consulta():
     lblt1_titulo = Label(ventana_cons,text="su precio unitario. Asi como su valor total en inventario.",bg="#202020",fg="White",font=("Arial", "14"))
     lblt1_titulo.place(x="165",y="195")
     
+<<<<<<< Updated upstream
     """
     abrir = open("registroprueba.txt","r")
     consulta = abrir.read()
@@ -251,6 +278,15 @@ def ventana_consulta():
     texto.insert(END,consulta)
     texto.place(x=120,y=200)
     """
+=======
+    #abrir = open("registroprueba.txt","r")
+    #consulta = abrir.read()
+    #texto = Text(ventana_cons,width=40,height=10)
+    #texto.insert(END,consulta)
+    #texto.place(x=120,y=200)
+    
+    
+>>>>>>> Stashed changes
     read = open("registroprueba.txt","r")
 
     s = " "
@@ -259,6 +295,7 @@ def ventana_consulta():
     while (s):
         s=read.readline()
         L=s.split(",")
+<<<<<<< Updated upstream
         for I in L[3::4]:
             N1 = int(L[2])
             N2 = int(L[3])
@@ -290,9 +327,22 @@ def ventana_consulta():
     
    
    
+=======
+        N1 = int(L[2])
+        N2 = int(L[3])
+        mulplicacion = (N1*N2)
+        print ("El total de", L[0] ,"en inventario es de", mulplicacion)
+        data = str(L)
+        todadata = todadata + data  + "\n"
+    
+        texto = Text(ventana_cons,width=40,height=10)
+        texto.insert(END,mulplicacion)
+        texto.place(x=120,y=200)
+    read.close()
+    
+>>>>>>> Stashed changes
 
 
-   
       
 ventana_elim = ""
 def ventana_eliminar():
@@ -312,6 +362,7 @@ def ventana_eliminar():
     global ent_defcual
     
     lbl_mod = Label(ventana_mod,text="Eliminacion de productos",font=("Arial","22"),fg="white",bg="#202020")
+<<<<<<< Updated upstream
     lbl_modcual = Label(ventana_mod,text="Cual producto desea eliminar?",font=("Arial","14"),fg="#FF6666",bg="#202020")
     ent_defcual = Entry(ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")  
     btn_aceptar = Button(ventana_mod, command=os.remove,text="Eliminar",font=("comic","12"),bg="#CCFFE5")
@@ -324,6 +375,24 @@ def ventana_eliminar():
     lbl_modcual.place(x="30",y="150")
     #ent_modcual.place(x="350",y="150")
     
+=======
+    lbl_modcual = Label(ventana_mod,text="Ingrese el producto a eliminar",font=("Arial","14"),fg="#FF6666",bg="#202020")
+    ent_modcual = Entry(ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")  
+       
+  
+    btn_aceptar = Button(ventana_mod, command=os.remove,text="Eliminar",font=("comic","12"),bg="red")
+
+    #global ld_lista
+    #ld_lista = ttk.Combobox(ventana_mod,values=Listita)
+    #ld_lista.current(0)
+    #ld_lista.bind("<ComboboxSelected>",comboclick)
+    #ld_lista.pack()
+          
+    
+    lbl_mod.place(x="100",y="50")
+    lbl_modcual.place(x="30",y="150")
+    ent_modcual.place(x="350",y="150")
+>>>>>>> Stashed changes
     btn_aceptar.place(x="250",y="500")
     read = open("registroprueba.txt","r")
     s = " "
@@ -381,10 +450,7 @@ def ventana_modificar():
     ent_modpre = Entry(ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")
     btn_aceptar = Button(ventana_mod, command=modificar,text="Aceptar",font=("comic","12"),bg="#CCFFE5")
 
-    
-
-    
-    
+   
     lbl_mod.place(x="100",y="50")
     lbl_modcual.place(x="30",y="180")
     #ent_modcual.place(x="350",y="150")
@@ -477,22 +543,15 @@ lbl1.place(x="170",y="225")
 
 menuPri = Menu(root)
 root.config(menu=menuPri)
-
 Ingresar = Menu(menuPri)
 menuPri.add_cascade(label="Ingresar",menu=Ingresar)
 Ingresar.add_command(label="Ir a Ventana Ingresar",command=ventana_ingreso)
-
-
 Consultar = Menu(menuPri)
 menuPri.add_cascade(label="Consultar",menu=Consultar)
 Consultar.add_command(label="Ir a Ventana Consultar",command=ventana_consulta)
-
-
 Eliminar = Menu(menuPri)
 menuPri.add_cascade(label="Elimiar",menu=Eliminar)
 Eliminar.add_command(label="Ir a Ventana Eliminar",command=ventana_eliminar)
-
-
 Modificar = Menu(menuPri)
 menuPri.add_cascade(label="Modificar",menu=Modificar)
 Modificar.add_command(label="Ir a Ventana Modificar",command=ventana_modificar)
