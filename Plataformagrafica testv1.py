@@ -345,22 +345,89 @@ def ventana_consulta():
     texto.insert(END,consulta)
     texto.place(x=50,y=250)
    
-    
-   
-   
+""" 
+global ventana_elim
+ventana_elim=Toplevel(root)
+root.withdraw()
+ventana_elim.geometry("600x600")
+ventana_elim.title("Eliminacion de productos")
+
+label_eliminar=Label(ventana_elim,text="Eliminar productos")
+label_eliminar.place(x=200,y=300)
+"""   
 
 
       
 ventana_elim = ""
 def ventana_eliminar():
     global ventana_elim
-    ventana_elim=Toplevel(root)
+    ventana_elim= Toplevel(root)
     root.withdraw()
-    ventana_elim.geometry("600x600")
-    ventana_elim.title("Eliminacion de productos")
+    ventana_mod.geometry("600x600")
+    ventana_mod.title("Modificacion de productos")
+    ventana_mod.config(background="#202020") 
 
-    label_eliminar=Label(ventana_elim,text="Eliminar productos")
-    label_eliminar.place(x=200,y=300)
+    lblfotomod = Label(ventana_mod,image=fotomod)
+    lblfotomod.pack()
+
+    bt_cerrar_ingreso=Button(ventana_mod,text="Regresar",command=regreso_mod,font=("Times new Roman","12"),bg="#E0E0E0")
+    bt_cerrar_ingreso.place(x="350",y="500")
+
+    global ent_modcual
+    global ent_modnom
+    global ent_modcod
+    global ent_modcant
+    global ent_modpre
+
+    
+
+    lbl_mod = Label(ventana_mod,text="Modificacion de productos",font=("Arial","22"),fg="white",bg="#202020")
+    lblt_info1 = Label(ventana_mod,text="A continuacion se permite modificar los production en existencia.",bg="#202020",fg="White",font=("Arial", "14"))
+    lblt_info1.place(x="30",y="110")
+    lbl_modcual = Label(ventana_mod,text="Cual producto desea modificar?",font=("Arial","14"),fg="#FF6666",bg="#202020")
+    ent_modcual = Entry(ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")  
+    lbl_modnom = Label(ventana_mod,text="Nombre del nuevo producto?",font=("Arial","14"),fg="#CCFFE5",bg="#202020")
+    ent_modnom = Entry (ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")      
+    lbl_modcod = Label(ventana_mod,text="Codigo del nuevo producto?",font=("Arial","14"),fg="#CCFFE5",bg="#202020")
+    ent_modcod = Entry(ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")
+    lbl_modcant = Label(ventana_mod,text="Cantidad de unidades?",font=("Arial","14"),fg="#CCFFE5",bg="#202020")
+    ent_modcant = Entry(ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")
+    lbl_modpre = Label(ventana_mod,text="Precio unitario? ",font=("Arial","14"),fg="#CCFFE5",bg="#202020")
+    ent_modpre = Entry(ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")
+    btn_aceptar = Button(ventana_mod, command=modificar,text="Aceptar",font=("comic","12"),bg="#CCFFE5")
+
+   
+    lbl_mod.place(x="100",y="50")
+    lbl_modcual.place(x="30",y="180")
+    #ent_modcual.place(x="350",y="150")
+    lbl_modnom.place(x="30",y="250")
+    ent_modnom.place(x="350",y="250")
+    lbl_modcod.place(x="30",y="300")
+    ent_modcod.place(x="350",y="300")
+    lbl_modcant.place(x="30",y="350")
+    ent_modcant.place(x="350",y="350")
+    lbl_modpre.place(x="30",y="400")
+    ent_modpre.place(x="350",y="400")
+    btn_aceptar.place(x="250",y="500")
+
+    read = open("registroprueba.txt","r")
+    s = " "
+    todadata=" "
+    while (s):
+        s=read.readline()
+        L=s.split(",")
+        data = str(L[0])
+        todadata = todadata + data  + "\n"
+        print(todadata)
+         
+    read.close()
+    global ld_lista
+    ld_lista = ttk.Combobox(ventana_mod,values=todadata,width="30")
+    ld_lista.place(x="350",y="180")
+
+    
+
+    
 
 
 
