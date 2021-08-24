@@ -1,0 +1,2 @@
+Nombre: carlos| Cedula: 123456| Salario: 6800
+Nombre: Carlos| Cedula: 123456| Salario: 8000
