@@ -15,7 +15,6 @@ root.withdraw()
 foto=PhotoImage(file="Imagenes\\Image_Hyper.png")
 lblfoto = Label(root,image=foto)
 lblfoto.pack()
-
 fotoing=PhotoImage(file="Imagenes\\pi2.png")
 fotocons=PhotoImage(file="Imagenes\\pi3.png")
 fotodel=PhotoImage(file="Imagenes\\pi4.png")
@@ -101,6 +100,43 @@ def guardar():
     ent_cantidad.delete(0,END) 
     ent_precio.delete(0,END)
     messagebox.showinfo(message="Producto Agregado")
+
+
+#------------------------------------------------------------------------
+def eliminar():
+    read = open("registroprueba.txt","r")
+    borrar = open ("temporal","w")
+
+    #busqueda = ent_modcual.get()
+    busqueda = ld_lista.get()
+
+    s = " "
+
+    while (s):
+        s=read.readline()
+        L=s.split(",")
+        
+        if len (s) > 0:
+            if L [0] == busqueda:
+                nombre = ent_modnom.get()
+                codigo = ent_modcod.get()
+                cantidad = ent_modcant.get()
+                precio = ent_modpre.get()
+                borrar.truncate(nombre +","+codigo+","+cantidad+","+precio+"\n")
+            else:
+                borrar.truncate(s)
+    read.close()
+    borrar.close()
+    os.remove("registroprueba.txt")
+   
+    ent_modcual.delete(0,END)
+    ent_modnom.delete(0,END)
+    ent_modcod.delete(0,END)
+    ent_modcant.delete(0,END)
+    ent_modpre.delete(0,END)
+    messagebox.showinfo(message="Producto Modificado")
+
+#-----------------------------------------------------------------------------------------
 
 
 def mostrar():
@@ -318,48 +354,18 @@ def ventana_consulta():
 ventana_elim = ""
 def ventana_eliminar():
     global ventana_elim
-    ventana_elim = Toplevel(root)
+    ventana_elim=Toplevel(root)
     root.withdraw()
     ventana_elim.geometry("600x600")
     ventana_elim.title("Eliminacion de productos")
-    ventana_elim.config(background="#202020") 
 
-    labelfotofond = Label(ventana_mod,image=fotomod)
-    labelfotofond.pack()
+    label_eliminar=Label(ventana_elim,text="Eliminar productos")
+    label_eliminar.place(x=200,y=300)
 
-    bt_cerrar_ventana=Button(ventana_mod,text="Regresar",command=regreso_mod,font=("Times new Roman","12"),bg="#E0E0E0")
-    bt_cerrar_ventana.place(x="350",y="500")
 
-    global ent_defcual
-    
-    lbl_mod = Label(ventana_mod,text="Eliminacion de productos",font=("Arial","22"),fg="white",bg="#202020")
-    lbl_modcual = Label(ventana_mod,text="Cual producto desea eliminar?",font=("Arial","14"),fg="#FF6666",bg="#202020")
-    ent_defcual = Entry(ventana_mod,font=("Albertus Extra Bold","14"),width="18",borderwidth="5")  
-    btn_aceptar = Button(ventana_mod, command=os.remove,text="Eliminar",font=("comic","12"),bg="#CCFFE5")
 
-    
 
-    
-    
-    lbl_mod.place(x="100",y="50")
-    lbl_modcual.place(x="30",y="150")
-    #ent_modcual.place(x="350",y="150")
-    
-    btn_aceptar.place(x="250",y="500")
-    read = open("registroprueba.txt","r")
-    s = " "
-    todadata=" "
-    while (s):
-        s=read.readline()
-        L=s.split(",")
-        data = str(L[0])
-        todadata = todadata + data  + "\n"
-        print(todadata)
-         
-    read.close()
-    global ld_lista
-    ld_lista = ttk.Combobox(ventana_mod,values=todadata,width="30")
-    ld_lista.place(x="350",y="150")
+  
 
 
 
