@@ -517,7 +517,7 @@ lbl_habla4=Label(root,text="Por favor elija una opción del menú",font=("Helvet
 
 bt_ingreso=Button(root,text="Ingresar",command=ventana_ingreso,font=("Helvetica","17"),foreground="#CCFFE5",background="#606060",height="1",width="10")
 bt_consulta=Button(root,text="Consultar",command=ventana_consulta,font=("Helvetica","17"),foreground="#CCFFE5",background="#606060",height="1",width="10")
-bt_eliminar=Button(root,text="Eliminar",command=ventana_eliminar,font=("Helvetica","17"),foreground="#CCFFE5",background="#606060",height="1",width="10")
+
 bt_modificar=Button(root,text="Modificar",command=ventana_modificar,font=("Helvetica","17"),foreground="#CCFFE5",background="#808080",height="1",width="10")
 lbl_opciones.place(x="255",y="42")
 lbl_habla.place(x="310",y="130")
@@ -529,8 +529,8 @@ lbl_habla4.place(x="220",y="390")
 
 
 bt_ingreso.place(x="100", y="450")
-bt_consulta.place(x="250", y="450")
-bt_eliminar.place(x="400", y="450")
+bt_consulta.place(x="320", y="450")
+
 bt_modificar.place(x="550", y="450")
 bt_salir_root= Button(root,text="Salir",command=cancelar_login,font=("Helvetica","12"),foreground="#66FFB2",background="#003333",height="1",width="10")
 bt_salir_root.place(x="350", y="550")
@@ -575,8 +575,7 @@ Consultar = Menu(menuPri)
 menuPri.add_cascade(label="Consultar",menu=Consultar)
 Consultar.add_command(label="Ir a Ventana Consultar",command=ventana_consulta)
 Eliminar = Menu(menuPri)
-menuPri.add_cascade(label="Elimiar",menu=Eliminar)
-Eliminar.add_command(label="Ir a Ventana Eliminar",command=ventana_eliminar)
+
 Modificar = Menu(menuPri)
 menuPri.add_cascade(label="Modificar",menu=Modificar)
 Modificar.add_command(label="Ir a Ventana Modificar",command=ventana_modificar)
